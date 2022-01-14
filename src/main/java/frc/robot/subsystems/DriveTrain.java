@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -20,7 +20,22 @@ public class DriveTrain extends SubsystemBase {
   SpeedControllerGroup rightMotors;
   DifferentialDrive drive;
 
-  /** Creates a new DriveTrain. */
+  /** Creates a new DriveTrain. 
+   * 
+   * This is the "constructor", and here we are essentially setting up some 
+   * motor controlers. Each motor on the robot is connected to a controller, and 
+   * those controllers are mapped in the controls here. 
+   * 
+   * Each controller is represented by an object (a class), so it is important to 
+   * use the correct class for your controller. In this case, the motor controller objects
+   * being used are not correct for what is on our robot. Our motors are "Falcons", which have
+   * an integrate TalonFX motor controller. I would suggest looking at
+   * https://docs.ctre-phoenix.com/en/stable/ch15_WPIDrive.html
+   * for the correct class you will want to use. Note you will need to install some 
+   * "vendor libraries", Ann has an email from me with the link for how to do that.
+   * 
+   * Here Constants.LEFT_Front, etc. will be the CAN IDs of the motor controllers.
+  */
   public DriveTrain() {
     leftFront = new Talon(Constants.LEFT_Front);
     leftFront.setInverted(false);
